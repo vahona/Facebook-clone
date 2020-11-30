@@ -1,0 +1,29 @@
+{
+  "name": "meme-generator",
+  "version": "1.0.0",
+  "description": "Onja-Book facebook clone",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel index.html"
+  },
+  "author": "",
+  "license": "ISC",
+  "browserslist": [
+    "last 1 chrome versions"
+  ],
+  "dependencies": {
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0",
+    "react-router": "^5.2.0",
+    "styled-components": "^5.2.1"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vahona/Facebook-clone.git"
+  },
+  "bugs": {
+    "url": "https://github.com/vahona/Facebook-clone/issues"
+  },
+  "homepage": "https://github.com/vahona/Facebook-clone#readme"
+}
