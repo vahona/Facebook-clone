@@ -2,48 +2,33 @@
     {
         "id" : "1",
         "username": "Sugi",
-        "like": 1,
-        "comments": [
-            {
-                "comment" : "wwkwklalaalal",
-                "date_coments": "30-05-20"
-            }
-        ],
-        "post" : [
-            {
-                "text" : "ksjkdsflkdsl",
-                "image" : "https/lkll/l"
-
-            }
-        ],
+        "like":  [
+                {
+             "id" : 1,
+             "username" : "who",
+             "profile" : "https://picsum.photos/id/1015/694/520.jpg",
+             "date_coments": "30-05-20"
+                }
+            ],
+        "comment" : 
+            [
+                {
+             "id" : 1,
+             "username" : "who",
+             "profile" : "https://picsum.photos/id/1015/694/520.jpg",
+             "comment": "kjkjsdk",
+             "date_coments": "30-05-20"
+                }
+            ]
+            ,
+        "posttext" : "ksjkdsflkdsl",
+        "postimage" : "https://picsum.photos/id/1018/694/520.jpg",
         "created_date": "10-05-20",
         "update_date": "20-09-20"
-
-    
-    },
-
-
-    {
-        "id" : "2",
-        "username": "Dinna",
-        "like": 1,
-        "comments": [
-            {
-                "comment" : "jjdfhjdhgjhjf",
-                "date_coments": "12-05-20"
-            }
-        ],
-         "post" : [
-            {
-                "text" : "ksjkdsflkdsl",
-                "image" : "https/lkll/l"
-
-            }
-        ],
-        "created_date": "13-05-20",
-        "update_date": "23-09-20"
 
     
     }
 
 ]
+
+

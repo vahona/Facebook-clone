@@ -1,11 +1,22 @@
 import React from "react"
 
-function Addpost() {
+function Addpost({childrean}) {
     return (
         <>
-            <div>
-                Addpost
-            </div>
+        <p>
+            new post: 
+        </p>
+        <textarea  rows="5" cols="33">
+            Say what in your mind
+        </textarea>
+        <form>
+            <label>Picture url: 
+            <input />
+            </label>
+            <button>
+                Post
+            </button>
+            </form>
         </>
     )
 }
