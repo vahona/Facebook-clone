@@ -4,24 +4,26 @@
         "username": "Sugi",
         "like":  [
                 {
+            "liked" : false,
+            "numberliked" : 0,
              "id" : 1,
              "username" : "who",
              "profile" : "https://picsum.photos/id/1015/694/520.jpg",
              "date_coments": "30-05-20"
                 }
             ],
-        "comment" : 
+        "comments" : 
             [
                 {
              "id" : 1,
              "username" : "who",
              "profile" : "https://picsum.photos/id/1015/694/520.jpg",
-             "comment": "kjkjsdk",
+             "comment": "Lorem ipsum is placeholder text commonly used in the graphic, print",
              "date_coments": "30-05-20"
                 }
             ]
             ,
-        "posttext" : "ksjkdsflkdsl",
+        "posttext" : "Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.",
         "postimage" : "https://picsum.photos/id/1018/694/520.jpg",
         "created_date": "10-05-20",
         "update_date": "20-09-20"
