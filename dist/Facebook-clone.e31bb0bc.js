@@ -32715,12 +32715,22 @@ function ContextProvider({
 }) {
   const [facebook, setFacebook] = (0, _react.useState)(_facebook.default);
   const [comment, setComment] = (0, _react.useState)([]);
+  const [inputValue, setInputValue] = (0, _react.useState)("");
   console.log(comment);
   console.log(facebook);
 
   function addComments(e) {
     e.preventDefault();
+    setComment([...facebook, setInputValue]);
     console.log(e.target.value);
+  }
+
+  function SubmitComment(e) {
+    e.defaultDefault();
+    setComment(firstIpnut => firstIpnut.concat({
+      value: inputValue
+    }));
+    setInputValue("");
   } // Function for likes
 
 
@@ -32746,7 +32756,10 @@ function ContextProvider({
       addComments,
       comment,
       setComment,
-      liked
+      liked,
+      setInputValue,
+      value: inputValue,
+      SubmitComment
     }
   }, children);
 }
@@ -63073,78 +63086,78 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 const Image = _styledComponents.default.img`
-    width: 100px
-`;
+        width: 100px
+    `;
 const Images = _styledComponents.default.img`
-    width: 40px;
-    float: left;
-    margin: 1rem;
-    margin-left: 0;
-    border-radius: 50%
-    
-`;
+        width: 40px;
+        float: left;
+        margin: 1rem;
+        margin-left: 0;
+        border-radius: 50%
+        
+    `;
 const Button = _styledComponents.default.div`
-  display: flex;
-  
-`;
-const Div = _styledComponents.default.div`
-border-radius: 10px;
-box-shadow:  10px 5px 5px 10px gray;
-padding: 3rem;
-margin: 1rem
-
- 
-`;
-const Form = _styledComponents.default.form`
-     display:flex;
-     flex-direction:row;
-     border:1px solid grey;
-     padding:2px;
-     border-radius: 24px;
-     background-color: gray;
-`;
-const Buttons = _styledComponents.default.button`
-    border:1px solid blue;
-    background:white;
-    border-radius: 24px;
-
-`;
-const OrederList = _styledComponents.default.ul`
-  padding: 0
-
-`;
-const Button1 = _styledComponents.default.button`
-    background-color: white;
-    border: none
-`;
-const Input = _styledComponents.default.input`
-     flex-grow:2;
-     border:none;
-     border-radius: 24px
-     
+    display: flex;
     
-`;
-const Lists = _styledComponents.default.li`
-   list-style: none
-`;
-const Article = _styledComponents.default.article`
-  display: flex;
-  margin: 1rem
+    `;
+const Div = _styledComponents.default.div`
+    border-radius: 10px;
+    box-shadow:  10px 5px 5px 10px gray;
+    padding: 3rem;
+    margin: 1rem
 
-`;
+    
+    `;
+const Form = _styledComponents.default.form`
+        display:flex;
+        flex-direction:row;
+        border:1px solid grey;
+        padding:2px;
+        border-radius: 24px;
+        background-color: gray;
+    `;
+const Buttons = _styledComponents.default.button`
+        border:1px solid blue;
+        background:white;
+        border-radius: 24px;
+
+    `;
+const OrederList = _styledComponents.default.ul`
+    padding: 0
+
+    `;
+const Button1 = _styledComponents.default.button`
+        background-color: white;
+        border: none
+    `;
+const Input = _styledComponents.default.input`
+        flex-grow:2;
+        border:none;
+        border-radius: 24px
+        
+        
+    `;
+const Lists = _styledComponents.default.li`
+    list-style: none
+    `;
+const Article = _styledComponents.default.article`
+    display: flex;
+    margin: 1rem
+
+    `;
 const Username = _styledComponents.default.div`
 
-margin-right: 70%
+    margin-right: 70%
 
-`;
+    `;
 const Icons = _styledComponents.default.i`
- color: darkkhaki
-`;
+    color: darkkhaki
+    `;
 const IconsBlue = _styledComponents.default.i`
- color: blue
-`;
+    color: blue
+    `;
 const Liked = _styledComponents.default.div`
-  display: flex
+    display: flex
 `;
 
 function Feed({
@@ -63154,7 +63167,10 @@ function Feed({
     facebook,
     setFacebook,
     addComments,
-    liked
+    liked,
+    inputValue,
+    setInputValue,
+    SubmitComment
   } = (0, _react.useContext)(_Context.Context);
   const facebookList = facebook.map(face => {
     return /*#__PURE__*/_react.default.createElement("div", {
@@ -63170,9 +63186,12 @@ function Feed({
   });
   return /*#__PURE__*/_react.default.createElement(Div, null, facebookList, /*#__PURE__*/_react.default.createElement(Form, null, /*#__PURE__*/_react.default.createElement(Input, {
     type: "text",
+    value: inputValue,
     onChange: addComments,
     placeholder: "Add a comment"
-  }), /*#__PURE__*/_react.default.createElement(Buttons, null, "Post")));
+  }), /*#__PURE__*/_react.default.createElement(Buttons, {
+    onClick: SubmitComment
+  }, "Post")));
 }
 
 var _default = Feed;

@@ -7,23 +7,29 @@ function ContextProvider({children}) {
 
     const [facebook, setFacebook] = useState(Facebook);
     const [comment, setComment] = useState([])
+    const [inputValue, setInputValue] = useState("")
+
     console.log(comment);
-    
     console.log(facebook);
 
-     function addComments(e) {
+    function addComments(e) {
         e.preventDefault()
+        setComment([...facebook, setInputValue])
         console.log(e.target.value);
 
      }
 
+    function SubmitComment(e) {
+        e.defaultDefault()
+        setComment( firstIpnut => firstIpnut.concat({value: inputValue}))
+        setInputValue("")
+     }
 
      // Function for likes
 
+    function liked(id) {
 
-            function liked(id) {
-
-                const posts = facebook.map(post => {
+        const posts = facebook.map(post => {
             if(facebook.id === id) {
                 return {
                     ...post,
@@ -40,15 +46,17 @@ function ContextProvider({children}) {
 
             }
 
-
-     return (
+    return (
         <Context.Provider value={{
             facebook,
             setFacebook,
             addComments,
             comment, 
             setComment,
-            liked
+            liked,
+            setInputValue,
+            value: inputValue,
+            SubmitComment
              }}>
             {children}
         </Context.Provider>
