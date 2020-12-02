@@ -17,16 +17,23 @@ const List = styled.li`
    list-style: none
 `
 
+const LinkStyled = styled(Link)`
+
+  text-decoration: none;
+  font-family: Roboto;
+  color: gray
+
+`
 
 function Header() {
     return(
         <div>
                 <nav>
                 <OrderList>
-                    <List><Link to="/Feed">Feed</Link></List>
-                    <List><Link to="/Addpost">Add a post </Link></List>
+                    <List><LinkStyled to="/Feed">Feed</LinkStyled></List>
+                    <List><LinkStyled to="/Addpost">Add a post </LinkStyled></List>
                     <List>
-                        <Link to="/Username"> UserName </Link>
+                        <LinkStyled to="/Username"> UserName </LinkStyled>
                         <Border src="https://picsum.photos/id/1018/694/520.jpg"/>
                     </List> 
                 </OrderList>

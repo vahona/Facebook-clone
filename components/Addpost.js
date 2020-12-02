@@ -1,6 +1,6 @@
 import React from "react"
 
-function Addpost({childrean}) {
+function Addpost({children}) {
     return (
         <>
         <p>

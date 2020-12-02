@@ -2,14 +2,15 @@
     {
         "id" : "1",
         "username": "Sugi",
+        "numberliked" : 0,
         "like":  [
                 {
             "liked" : false,
-            "numberliked" : 0,
-             "id" : 1,
+             "id" : "1",
              "username" : "who",
              "profile" : "https://picsum.photos/id/1015/694/520.jpg",
-             "date_coments": "30-05-20"
+             "date_coments": "30-05-20",
+             "userId" : 34
                 }
             ],
         "comments" : 

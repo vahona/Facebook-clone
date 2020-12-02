@@ -1,7 +1,7 @@
 import React, { useContext,useState } from 'react'
 import {Context} from '../Context'
 import styled from "styled-components"
- import { FaThumbsUp } from "react-icons/fa";
+ import { FaThumbsUp, FaRegThumbsUp } from "react-icons/fa";
 
     const Image = styled.img`
         width: 100px
@@ -24,7 +24,8 @@ import styled from "styled-components"
     border-radius: 10px;
     box-shadow:  10px 5px 5px 10px gray;
     padding: 3rem;
-    margin: 1rem
+    margin: 1rem;
+    font-family: Roboto
 
     
     `
@@ -58,8 +59,7 @@ import styled from "styled-components"
         flex-grow:2;
         border:none;
         border-radius: 24px
-        
-        
+
     `
 
     const Lists = styled.li`
@@ -77,7 +77,7 @@ import styled from "styled-components"
 
     `
     const Icons = styled.i`
-    color: darkkhaki
+    color: blue
     `
 
     const IconsBlue = styled.i`
@@ -97,6 +97,7 @@ import styled from "styled-components"
             inputValue,
             setInputValue,
             SubmitComment,
+             userLikeFunc
         } = useContext(Context)
 
     const facebookList = facebook.map((face) => {
@@ -115,22 +116,26 @@ import styled from "styled-components"
                 </div>
                 <Image className="image" src={face.postimage} />
                 <Liked>
-                    <Button onClick={() => liked(face.id) }>
-                        {face.like[0].liked ? <Icons><FaThumbsUp /></Icons> : <IconsBlue><FaThumbsUp /></IconsBlue> }
-                    </Button>
+                    <button onClick={ userLikeFunc}>
+                    <Icons onClick={() => liked(face.like[0].id) }>
+                        {face.like[0].liked ? <FaRegThumbsUp /> : <FaThumbsUp /> }
+                    </Icons>
+                    </button>
                 <p>
-                    {face.like[0].numberliked}
+                    {!face.like[0].liked ? face.numberliked + 1 : face.numberliked}
                 </p>
-                </Liked>
-                    <OrederList>
-                        <Lists>
-                            <Images src={face.comments[0].profile} /> 
-                               {face.comments[0].comment} 
-                            </Lists>
-                    </OrederList>
-               </div>
+                </Liked> 
+                <OrederList>
+                    <Lists>
+                        <Images src={face.comments[0].profile} /> 
+                        {face.comments[0].comment} 
+                    </Lists>
+                </OrederList>
+                
+            </div>
         )
     })
+
     return (
         <Div>
             {facebookList}

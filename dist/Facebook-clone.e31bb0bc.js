@@ -32667,13 +32667,14 @@ if ("development" !== "production") {
 module.exports = [{
   "id": "1",
   "username": "Sugi",
+  "numberliked": 0,
   "like": [{
     "liked": false,
-    "numberliked": 0,
-    "id": 1,
+    "id": "1",
     "username": "who",
     "profile": "https://picsum.photos/id/1015/694/520.jpg",
-    "date_coments": "30-05-20"
+    "date_coments": "30-05-20",
+    "userId": 34
   }],
   "comments": [{
     "id": 1,
@@ -32716,6 +32717,13 @@ function ContextProvider({
   const [facebook, setFacebook] = (0, _react.useState)(_facebook.default);
   const [comment, setComment] = (0, _react.useState)([]);
   const [inputValue, setInputValue] = (0, _react.useState)("");
+  const [userLike, setUserLike] = (0, _react.useState)(0);
+  const [currentUser, setcurrentUser] = (0, _react.useState)({
+    id: "12",
+    profile: "https://picsum.photos/id/1015/694/520.jpg",
+    username: "Sugi",
+    liked: false
+  });
   console.log(comment);
   console.log(facebook);
 
@@ -32739,7 +32747,7 @@ function ContextProvider({
       if (facebook.id === id) {
         return { ...post,
           like: [{
-            liked: !post.like[0].number
+            liked: !post.like[0].liked
           }]
         };
       }
@@ -32747,6 +32755,18 @@ function ContextProvider({
       return post;
     });
     setFacebook(posts);
+  }
+
+  function userLikeFunc(e) {
+    const user = facebook.some(post => currentUser.id === post.id); // const newId = facebook.find()
+
+    console.log(user);
+
+    if (!user) {
+      const newlike = { ...facebook,
+        like: [currentUser]
+      };
+    }
   }
 
   return /*#__PURE__*/_react.default.createElement(Context.Provider, {
@@ -32759,10 +32779,34 @@ function ContextProvider({
       liked,
       setInputValue,
       value: inputValue,
-      SubmitComment
+      SubmitComment,
+      userLikeFunc
     }
   }, children);
-}
+} //    cosnt [state, dispatch] = useReducer(
+//         (state, action) => {
+//             switch (action.type) {
+//                 case "ADD_COMMENT" : {
+//                     const newPost = state.comments.map(post => {
+//                         if(post.id === action.id) {
+//                             return {
+//                                 ...post,
+//                                 comment: [...post.comment, action.comments]
+//                             };
+//                         }
+//                         return post
+//                     });
+//                     return {
+//                         ...state,
+//                         comments: newPost
+//                     }
+//                 }
+//             }
+//         },
+//         {
+//           comments: [],
+//         }
+//     );
 },{"react":"node_modules/react/index.js","./facebook.json":"facebook.json"}],"components/Addpost.js":[function(require,module,exports) {
 "use strict";
 
@@ -32776,7 +32820,7 @@ var _react = _interopRequireDefault(require("react"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function Addpost({
-  childrean
+  children
 }) {
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("p", null, "new post:"), /*#__PURE__*/_react.default.createElement("textarea", {
     rows: "5",
@@ -63104,7 +63148,8 @@ const Div = _styledComponents.default.div`
     border-radius: 10px;
     box-shadow:  10px 5px 5px 10px gray;
     padding: 3rem;
-    margin: 1rem
+    margin: 1rem;
+    font-family: Roboto
 
     
     `;
@@ -63134,8 +63179,7 @@ const Input = _styledComponents.default.input`
         flex-grow:2;
         border:none;
         border-radius: 24px
-        
-        
+
     `;
 const Lists = _styledComponents.default.li`
     list-style: none
@@ -63151,7 +63195,7 @@ const Username = _styledComponents.default.div`
 
     `;
 const Icons = _styledComponents.default.i`
-    color: darkkhaki
+    color: blue
     `;
 const IconsBlue = _styledComponents.default.i`
     color: blue
@@ -63170,7 +63214,8 @@ function Feed({
     liked,
     inputValue,
     setInputValue,
-    SubmitComment
+    SubmitComment,
+    userLikeFunc
   } = (0, _react.useContext)(_Context.Context);
   const facebookList = facebook.map(face => {
     return /*#__PURE__*/_react.default.createElement("div", {
@@ -63178,9 +63223,11 @@ function Feed({
     }, /*#__PURE__*/_react.default.createElement(Article, null, /*#__PURE__*/_react.default.createElement(Username, null, face.username), /*#__PURE__*/_react.default.createElement("div", null, face.created_date)), /*#__PURE__*/_react.default.createElement("div", null, face.posttext), /*#__PURE__*/_react.default.createElement(Image, {
       className: "image",
       src: face.postimage
-    }), /*#__PURE__*/_react.default.createElement(Liked, null, /*#__PURE__*/_react.default.createElement(Button, {
-      onClick: () => liked(face.id)
-    }, face.like[0].liked ? /*#__PURE__*/_react.default.createElement(Icons, null, /*#__PURE__*/_react.default.createElement(_fa.FaThumbsUp, null)) : /*#__PURE__*/_react.default.createElement(IconsBlue, null, /*#__PURE__*/_react.default.createElement(_fa.FaThumbsUp, null))), /*#__PURE__*/_react.default.createElement("p", null, face.like[0].numberliked)), /*#__PURE__*/_react.default.createElement(OrederList, null, /*#__PURE__*/_react.default.createElement(Lists, null, /*#__PURE__*/_react.default.createElement(Images, {
+    }), /*#__PURE__*/_react.default.createElement(Liked, null, /*#__PURE__*/_react.default.createElement("button", {
+      onClick: userLikeFunc
+    }, /*#__PURE__*/_react.default.createElement(Icons, {
+      onClick: () => liked(face.like[0].id)
+    }, face.like[0].liked ? /*#__PURE__*/_react.default.createElement(_fa.FaRegThumbsUp, null) : /*#__PURE__*/_react.default.createElement(_fa.FaThumbsUp, null))), /*#__PURE__*/_react.default.createElement("p", null, !face.like[0].liked ? face.numberliked + 1 : face.numberliked)), /*#__PURE__*/_react.default.createElement(OrederList, null, /*#__PURE__*/_react.default.createElement(Lists, null, /*#__PURE__*/_react.default.createElement(Images, {
       src: face.comments[0].profile
     }), face.comments[0].comment)));
   });
@@ -63209,7 +63256,7 @@ var _react = _interopRequireDefault(require("react"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function Homepage() {
-  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", null, "kkkkkkkkkkkkkkk"));
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("h2", null, "Homepage"));
 }
 
 var _default = Homepage;
@@ -63260,13 +63307,20 @@ const List = _styledComponents.default.li`
    margin: 1rem;
    list-style: none
 `;
+const LinkStyled = (0, _styledComponents.default)(_reactRouterDom.Link)`
+
+  text-decoration: none;
+  font-family: Roboto;
+  color: gray
+
+`;
 
 function Header() {
-  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("nav", null, /*#__PURE__*/_react.default.createElement(OrderList, null, /*#__PURE__*/_react.default.createElement(List, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("nav", null, /*#__PURE__*/_react.default.createElement(OrderList, null, /*#__PURE__*/_react.default.createElement(List, null, /*#__PURE__*/_react.default.createElement(LinkStyled, {
     to: "/Feed"
-  }, "Feed")), /*#__PURE__*/_react.default.createElement(List, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+  }, "Feed")), /*#__PURE__*/_react.default.createElement(List, null, /*#__PURE__*/_react.default.createElement(LinkStyled, {
     to: "/Addpost"
-  }, "Add a post ")), /*#__PURE__*/_react.default.createElement(List, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+  }, "Add a post ")), /*#__PURE__*/_react.default.createElement(List, null, /*#__PURE__*/_react.default.createElement(LinkStyled, {
     to: "/Username"
   }, " UserName "), /*#__PURE__*/_react.default.createElement(Border, {
     src: "https://picsum.photos/id/1018/694/520.jpg"
@@ -63367,7 +63421,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50459" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49921" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
